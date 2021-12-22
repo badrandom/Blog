@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<h1 class="fs-4">Посты</h1>
+<table class="table table-hover">
+  <thead>
+  <tr >
+    <th>Название</th>
+    <th>Действия</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if current_user && current_user.is_admin %>
+  <%= link_to 'Новый пост', new_post_path, class: "btn btn-outline-primary" %>
+  <% end %>
+  <% @posts.each do |post| %>
+    <tr>
+      <td ><%= post.title %></td>
+      <!--<td><%= post.content %></td>-->
+      <td><%= link_to 'Читать', post, class: "btn btn-outline-secondary" %></td>
+      <% if current_user && current_user.is_admin %>
+      <td><%= link_to 'Редактировать', edit_post_path(post), class: "btn btn-outline-secondary" %></td>
+      <td><%= link_to 'Удалить', post, method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-outline-danger" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<br>

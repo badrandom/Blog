@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Имя пользователя:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Администратор:</strong>
+  <%= @user.is_admin %>
+</p>
+
+<%= link_to 'Редактировать', edit_user_path(@user) %> |
+<%if current_user && current_user.is_admin %>
+<%= link_to 'Назад', users_path %>
+<%else %>
+<%= link_to 'Назад', home_path %>
+<%end %>
